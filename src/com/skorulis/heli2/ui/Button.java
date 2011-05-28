@@ -103,6 +103,9 @@ private void redrawNowOrLater(Image image) {
 	
 	private void redraw() {
 	  layer.canvas().clear();
+	  if(!visible) {
+		  return; //Nothing to draw
+	  }
 	  if(bgImage!=null && bgImage.getImage(state)!=null) {
 	    layer.canvas().drawImage(bgImage.getImage(state), 0, 0, layer.canvas().width(), layer.canvas().height());
 	  }
@@ -145,11 +148,7 @@ private void redrawNowOrLater(Image image) {
 
   public void setVisible(boolean visible) {
 	  this.visible = visible;
-	  if(visible) {
-		redraw();
-	} else {
-		layer.canvas().clear();
-	}
+	  redraw();
   }
   
   public boolean visible() {
