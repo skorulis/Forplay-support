@@ -1,4 +1,4 @@
-package com.skorulis.heli2.ui;
+package com.skorulis.forplay.ui;
 
 public interface ClickHandler {
   
