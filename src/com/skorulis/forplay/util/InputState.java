@@ -17,8 +17,15 @@ public class InputState implements Keyboard.Listener,Pointer.Listener{
   private Layer clickLayer;
   
   public InputState(int numKeys) {
-    keys = new boolean[numKeys];
-    scale = 1.0f;
+    this(numKeys,1);
+  }
+  
+  public InputState(int numKeys,float scale) {
+    //If keys is 0 assume only the pointer is being used
+    if(numKeys > 0) {
+      keys = new boolean[numKeys]; 
+    }
+    this.scale = scale;
     pointer = new Vec2();
   }
   

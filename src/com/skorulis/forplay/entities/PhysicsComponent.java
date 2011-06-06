@@ -9,6 +9,8 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import forplay.core.Layer;
+
 public class PhysicsComponent {
 
   private Body body;
@@ -99,6 +101,11 @@ public class PhysicsComponent {
   
   public float physScale() {
     return physScale;
+  }
+  
+  public void stdPaint(float alpha,Layer layer) {
+    layer.setTranslation(x(), y());
+    layer.setRotation(body.getAngle());
   }
   
   
