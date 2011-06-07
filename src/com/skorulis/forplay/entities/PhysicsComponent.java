@@ -17,14 +17,17 @@ public class PhysicsComponent {
   private BodyDef bodyDef;
   private FixtureDef fixtureDef;
   private float physScale;
+  private Vec2 center;
  
   public PhysicsComponent() {}
   public PhysicsComponent(BodyType bodyType,float physScale) {
     bodyDef = new BodyDef();
     bodyDef.type = bodyType;
     bodyDef.position = new Vec2(0, 0);
+    center = new Vec2();
     this.physScale = physScale;
   }
+  
 
   public static Shape getRect(float left,float top,float width,float height) {
 	  PolygonShape polygonShape = new PolygonShape();
@@ -67,7 +70,11 @@ public class PhysicsComponent {
   }
   
   public void move(Vec2 force) {
-    body.applyLinearImpulse(force, new Vec2(0,0));
+    body.applyLinearImpulse(force, center);
+  }
+  
+  public void moveScale(Vec2 force) {
+    this.move(force.mul(physScale));
   }
   
   public float x() {
@@ -77,6 +84,11 @@ public class PhysicsComponent {
   public float y() {
     return body.getPosition().y;
   }
+  
+  public double dist(PhysicsComponent p) {
+    return Math.sqrt((x()-p.x())*(x()-p.x()) + (y()-p.y())*(y()-p.y()));
+  }
+  
   
   public float scaleX() {
     return x()/physScale;
@@ -107,6 +119,7 @@ public class PhysicsComponent {
     layer.setTranslation(x(), y());
     layer.setRotation(body.getAngle());
   }
+  
   
   
 }
