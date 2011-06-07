@@ -34,7 +34,7 @@ public class WorldUtil {
   }
   
   public static void buildBounds(float width,float height,World world) {
-    float buffer = 10;
+    
     Body ground = world.createBody(new BodyDef());
     PolygonShape groundShape = new PolygonShape();
     groundShape.setAsEdge(new Vec2(0, height), new Vec2(width, height));
@@ -49,6 +49,11 @@ public class WorldUtil {
     PolygonShape leftShape = new PolygonShape();
     leftShape.setAsEdge(new Vec2(0, 0), new Vec2(0, height));
     left.createFixture(leftShape, 0.0f);
+    
+    Body roof = world.createBody(new BodyDef());
+    PolygonShape roofShape = new PolygonShape();
+    roofShape.setAsEdge(new Vec2(0, 0), new Vec2(width, 0));
+    roof.createFixture(roofShape, 0.0f);
     
   }
   
